@@ -1,10 +1,11 @@
-# Stone: Astro Theme
+# SBJ: Astro Theme
 
-Stone is a free and open-source Astro theme specially designed for Business, Marketing, SaaS and Startup websites.
+Clean Astro is a free and open-source Astro theme specially designed for agencies and startups.
 
 ## Key Features:
 
 - **Built with Tailwind CSS & Alpine.js**
+- **Global Sass/SCSS** file 
 - **5+ Pages**
 - **15+ Sections**
 - Clean & Modern Design
@@ -14,6 +15,8 @@ Stone is a free and open-source Astro theme specially designed for Business, Mar
 - Super Lightweight
 - View Transitions (experimental)
 - **Prettier** Code Formatter
+- **Adobe Fonts** 
+- **Custom Fonts** Gilroy has been added
 - **Google Fonts**
 - **Remix Icons**
 - Free Updates
@@ -31,6 +34,10 @@ Stone is a free and open-source Astro theme specially designed for Business, Mar
 Navigate to your project folder and install its dependencies:
 
 ```
+pnpm i
+```
+or
+```
 npm install
 ```
 
@@ -39,7 +46,12 @@ npm install
 Once the installation is done, you can now run your app:
 
 ```
+pnpm start
+```
+or
+```
 npm run dev
+
 ```
 
 This runs the app in development mode. Open http://localhost:3000 to view it in the browser.
