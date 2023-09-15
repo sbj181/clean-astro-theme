@@ -1,0 +1,112 @@
+@import url("https://use.typekit.net/vnl5dgc.css");
+@import 'fonts';
+
+$primary-50: #f7fafc; // example color
+$primary-950: #007B98; // example color
+
+$theme-heading:  'Gilroy', sans-serif;
+// $theme-heading: "tt-travels-next", sans-serif;
+
+.bg-primary-50 {
+    background-color: $primary-50;
+  }
+  
+  .text-primary-950 {
+    color: $primary-950;
+  }
+
+// Define light mode colors
+$primary-text-light: #808080;
+$primary-bg-light: #fff;
+
+// Define dark mode colors
+$primary-text-dark: #ccc;
+$primary-bg-dark: #333;
+$teal: #00DFC3;
+$blue: #007B98;
+$grey: #808080;
+
+:root {
+    --bg-primary: #ffffff; /* light mode background color */
+    --text-primary: #808080; /* light mode text color */
+  }
+  
+  [data-theme='dark'] {
+    --bg-primary: #007B98; /* dark mode background color */
+    --text-primary: #ffffff; /* dark mode text color */
+  }
+
+/* #Logo {
+    fill: red;
+}
+@media (prefers-color-scheme: dark) {
+    #Logo {
+        fill: blue;
+    }
+}
+ */
+h1 {
+  font-family: $theme-heading;
+  font-weight: 700 !important;
+  font-style: normal;
+
+}
+
+h2 {
+  font-family: $theme-heading;
+  font-weight: 700 !important;
+  font-style: normal;
+
+}
+
+nav {
+    a {
+        font-family: $theme-heading;
+    }
+}
+
+html {
+    &.dark {
+        #Logo {
+            .glyph-back {
+                fill: none;
+                stroke-width: 4px;
+                stroke: #fff;
+            }
+            .glyph-front {
+                fill: #fff;
+                stroke-width: 0px;
+                stroke: #fff;
+            }
+            path {
+                fill: #fff;
+            }
+            .cls-3 {
+                fill: #fff;
+            }
+        }
+    }
+    #Logo {
+        .glyph-back {
+            fill: $blue;
+            stroke-width: 0px;
+            stroke: #fff;
+        }
+        .glyph-front {
+            fill: $teal;
+            stroke-width: 0px;
+            stroke: #fff;
+        }
+        path {
+            fill: $grey;
+        }
+        .cls-3 {
+            fill: $blue;
+        }
+    }
+   
+}
+
+#Logo {
+
+}

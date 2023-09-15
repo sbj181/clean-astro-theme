@@ -1,0 +1,110 @@
+---
+import '../styles/global.scss';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import { ViewTransitions } from 'astro:transitions';
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import ProgressBar from '../../src/layouts/ProgressBar.astro';
+
+
+interface Props {
+  description: string;
+  title: string;
+}
+
+const { description, title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.isDark }">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
+  >
+
+    <ProgressBar />
+
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    <script>
+      import Alpine from 'alpinejs';
+      import collapse from '@alpinejs/collapse';
+
+      Alpine.plugin(collapse);
+
+      Alpine.store('theme', {
+        init() {
+          this.isDark = (() => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+              return localStorage.getItem('theme') === 'dark';
+            }
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              return true;
+            }
+            return false;
+            
+          })();
+          // this.updateLogo(); 
+        },
+
+        isDark: false,
+
+        // Progress bar
+        updateProgressBar() {
+          const isDark = this.isDark;
+          const progressBar = document.getElementById('scrollProgressBar');
+          if (progressBar) {
+            progressBar.style.backgroundColor = isDark ? '#ffffff' : 'rgb(87 83 78 / var(--tw-bg-opacity))';
+          }
+        },
+        // Logo
+        updateLogo() {
+        const isDark = this.isDark;
+        const logoElement = document.getElementById('Logo');
+        console.log('Updating logo:', logoElement);  // Debug line
+        if (logoElement) {
+          logoElement.querySelectorAll('path').forEach((path) => {
+            path.setAttribute('fill', isDark ? '#ffffff' : 'rgb(87 83 78 / var(--tw-bg-opacity))');
+          });
+
+        }
+      },
+
+
+
+        toggle() {
+          this.isDark = !this.isDark;
+          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+          this.updateProgressBar();  // Added for progress bar
+          this.updateLogo();  // Newly added for Logo
+        },
+      });
+
+      window.Alpine = Alpine;
+      Alpine.start();
+      Alpine.store('theme').updateLogo();  // Ensure that the logo is updated on page load
+      Alpine.store('theme').updateProgressBar();  // Ensure that the logo is updated on page load
+    </script>
+  </body>
+</html>
+

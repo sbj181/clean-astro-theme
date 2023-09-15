@@ -1,0 +1,35 @@
+---
+// ProgressBar.astro
+---
+
+<div 
+  id="scrollProgressBar" 
+ 
+></div>
+
+<style>
+  #scrollProgressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: #007bff;
+    z-index: 9999;
+  }
+</style>
+
+<script>
+  // Listen for scroll events
+  window.addEventListener("scroll", function () {
+    // Get scroll information
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const windowScroll = window.scrollY;
+
+    // Calculate the percentage
+    const percentage = (windowScroll / windowHeight) * 100;
+
+    // Update the progress bar
+    document.getElementById("scrollProgressBar").style.width = `${percentage}%`;
+  });
+</script>
